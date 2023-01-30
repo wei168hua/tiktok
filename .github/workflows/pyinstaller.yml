@@ -1,0 +1,50 @@
+name: Package Application with Pyinstaller
+# push tag 时触发执行
+on:
+  push:
+    tags:
+      - v*  # Push events to matching v*, i.e. v1.0, v20.15.10
+
+# 需要添加权限才能 Release 成功
+permissions:
+  contents: write # Release 需要的基本权限，不然会出错
+  pull-requests: write # Release中 discussion_category_name 需要的权限, 这个设置暂时用不到
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # 设置python环境
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies and Package Application with Pyinstaller
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          pyinstaller -i ./static/img/favicon.ico -F TikTokCommand.py
+
+      - name: Create Release and Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+#          tag_name: ${{ github.ref }} # 标签名称. 默认为github.ref ${{ github.ref }}=refs/tags/+tag_name
+#          name: ${{ env.APP_VERSION }}  # 发布的名称. 默认为标签名称
+          # 发布的更新内容 body 和 body_path 同时使用时, 优先 body_path 失败再尝试 body
+#          body_path: ${{ github.workspace }}-CHANGELOG.md
+          body: TODO New Release.
+          draft: false # 此版本是否为草稿
+          prerelease: false # 是否为预发布
+          generate_release_notes: false # 是否为本次发布自动生成名称(name)和正文(body)。
+                                        # 如果指定了名称，将使用指定的名称；否则，将自动生成一个名称。
+                                        # 如果指定了正文，正文将被添加到自动生成的注释中。
+          files: | # 多个文件要加 |
+            dist/TikTokCommand.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # 默认为${{ github.token }}

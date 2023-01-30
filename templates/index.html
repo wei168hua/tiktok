@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zhxx">
+
+<head>
+    <title>抖音去水印工具</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content="抖音去水印工具"/>
+    <meta name="referrer" content="never">
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+    <!-- /Favicons -->
+    <link href="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <!-- //Favicons -->
+    <!--/Style-CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/css/style.css" type="text/css" media="all"/>
+    <!--//Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- naranja 右下角弹框提示 https://github.com/e1016/naranja-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/css/naranja.min.css" type="text/css"/>
+    <!-- //naranja -->
+
+    <!-- viewerjs 图片查看器 https://github.com/fengyuanchen/viewerjs-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/css/viewer.min.css" type="text/css"/>
+    <!-- //viewerjs -->
+</head>
+
+<body>
+
+<div class="error-61-mian">
+    <div class="wrapper">
+        <div class="errors-16-top">
+
+            <p style="color:#00c4b6;font-size:32px;">抖音去水印工具</p>
+            <br>
+            <p>温馨提示: 粘贴分享链接时 无需删除文案 但如果链接正确但解析失败请删掉文案后重试 https://v.douyin.com/kcvMpuN/</p>
+            <p>关于抖音批量下载与去水印工具的更多实现细节请点击: <a href="https://www.imgyh.com/archives/41.html" target="_blank" style="color:#00c4b6;">抖音批量下载与去水印工具</a></p>
+            <form id="form1" onsubmit="return false" action="#" method="post" class="d-flex error-page-form">
+{#                以前需要手动选择 图片 或者 视频 现在加了自动判断#}
+{#                <div class="select">#}
+{#                    <select name="awemeType" required="required">#}
+{#                        <option value="0" selected="selected">视频</option>#}
+{#                        <option value="1">图集</option>#}
+{#                    </select>#}
+{#                </div>#}
+
+                <input type="text" placeholder="抖音视频分享地址，复制后粘贴到此处" name="share_link" required="required">
+                <button type="reset" onclick="SendAjax()">解析</button>
+            </form>
+            {#            <div class="social-coming-icons">#}
+            {#                <a href="#" title="Facebook" class="footer-fb"><span class="fa fa-facebook"#}
+            {#                                                                     aria-hidden="true"></span></a>#}
+            {#                <a href="#" title="Twitter" class="footer-tw"><span class="fa fa-twitter"#}
+            {#                                                                    aria-hidden="true"></span></a>#}
+            {#                <a href="#" title="Google Plus" class="footer-gg"><span class="fa fa-google-plus"#}
+            {#                                                                        aria-hidden="true"></span></a>#}
+            {#                <a href="#" title="Linkedin" class="footer-lin"><span class="fa fa-linkedin"#}
+            {#                                                                      aria-hidden="true"></span></a>#}
+            {#            </div>#}
+
+        </div>
+        <div class="errors-16-mid">
+            <div class="loading" id="loading">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
+
+            <div id="download" style="display: none;">
+                <div class="photo">
+                    <img id="avatar" src="#" class="avatar" alt="avatar">
+                    <br>
+                    <p id="nickname" class="nickname"></p>
+                </div>
+                <div class="info">
+                    <div class="icons">
+                        <div class="icon">
+                            <i class="fa fa-heart" style="color:#fd325c;" aria-hidden="true"></i>
+                            <p id="aweme_digg_count"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-comment" style="color:#efeeec;" aria-hidden="true"></i>
+                            <p id="aweme_comment_count"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-star" style="color:#fcb505;" aria-hidden="true"></i>
+                            <p id="aweme_collect_count"></p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-share" style="color:#e7e8e6;" aria-hidden="true"></i>
+                            <p id="aweme_share_count"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <p id="desc"></p>
+                    <br>
+                    <a id="cover" href="#" target="_blank">
+                        <button type="button" class="btn btn1 ">
+                            <span>下载封面</span>
+                        </button>
+                    </a>
+                    <a id="video" href="#" target="_blank">
+                        <button type="button" class="btn btn1">
+                            <span>下载视频</span>
+                        </button>
+                    </a>
+                    <a id="music" href="#" target="_blank">
+                        <button type="button" class="btn btn1">
+                            <span>下载音乐</span>
+                        </button>
+                    </a>
+                    <button id="view_aweme" type="button" class="btn btn1">
+                        <span id="awemeType"></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="copy-right">
+        <p>Copyright &copy; 2021-2023.我的博客 <a href="https://www.imgyh.com/" target="_blank">GYH's Blog</a> && 项目地址 <a
+                href="https://github.com/imgyh/douyin" target="_blank">Github</a>
+            All rights reserved.</p>
+    </div>
+</div>
+
+{# 视频预览效果 https://blog.csdn.net/qq_45140694/article/details/115266928 #}
+<div id="show-video">
+    <a class="video-close">
+        <span>
+            <svg t="1614676844098" class="icon" viewBox="0 0 1024 1024"
+                 xmlns="http://www.w3.org/2000/svg" p-id="2082"
+                 width="30" height="30">
+                <path d="M591.506286 511.853714l417.133714-416.914285a54.601143 54.601143 0 0 0 0-76.8l-2.267429-2.267429a54.601143 54.601143 0 0 0-76.8 0L512.438857 433.481143 95.305143 15.798857a54.601143 54.601143 0 0 0-76.8 0L16.237714 18.066286a53.577143 53.577143 0 0 0 0 76.8l417.097143 416.987428L16.201143 929.097143a54.601143 54.601143 0 0 0 0 76.8l2.267428 2.267428a54.601143 54.601143 0 0 0 76.8 0l417.170286-417.060571 417.097143 417.097143a54.601143 54.601143 0 0 0 76.8 0l2.267429-2.267429a54.601143 54.601143 0 0 0 0-76.8z"
+                      p-id="2083" fill="#e6e6e6"></path>
+            </svg>
+        </span>
+    </a>
+    {# https://blog.csdn.net/seeeeeeeeeee/article/details/119981594 #}
+    <video src="" id="pre_video" controls="controls" poster=""></video>
+</div>
+
+<div style="display: none">
+    <ul id="images">
+{#    <li><img src="picture-1.jpg" alt="Picture 1"></li>#}
+{#    <li><img src="picture-2.jpg" alt="Picture 2"></li>#}
+{#    <li><img src="picture-3.jpg" alt="Picture 3"></li>#}
+  </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/js/naranja.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/js/viewer.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/imgyh/tiktok/static/js/custom.js" type="text/javascript"></script>
+</body>
+
+</html>
