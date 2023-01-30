@@ -37,8 +37,8 @@ jobs:
 #          tag_name: ${{ github.ref }} # 标签名称. 默认为github.ref ${{ github.ref }}=refs/tags/+tag_name
 #          name: ${{ env.APP_VERSION }}  # 发布的名称. 默认为标签名称
           # 发布的更新内容 body 和 body_path 同时使用时, 优先 body_path 失败再尝试 body
-#          body_path: ${{ github.workspace }}-CHANGELOG.md
-          body: TODO New Release.
+          body_path: CHANGELOG.md
+#          body: TODO New Release.
           draft: false # 此版本是否为草稿
           prerelease: false # 是否为预发布
           generate_release_notes: false # 是否为本次发布自动生成名称(name)和正文(body)。
