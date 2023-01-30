@@ -390,6 +390,9 @@ class TikTok(object):
         # 暂时使用不需要xg的接口
         max_cursor = 0
         self.awemeList = []
+
+        print("[  提示  ]:正在获取接口数据请稍后...\r\n")
+
         while True:
             if mode == "post":
                 post_url = 'https://www.iesdouyin.com/aweme/v1/web/aweme/post/?sec_user_id=%s&count=%s&max_cursor=%s&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333' % (
@@ -397,6 +400,9 @@ class TikTok(object):
             elif mode == "like":
                 post_url = 'https://www.iesdouyin.com/web/api/v2/aweme/like/?sec_uid=%s&count=%s&max_cursor=%s&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333' % (
                     sec_uid, count, max_cursor)
+            else:
+                print("[  错误  ]:模式选择错误, 仅支持post和like, 请检查后重新运行!\r")
+                return None
             res = requests.get(url=post_url, headers=self.headers)
 
             datadict = json.loads(res.text)
@@ -404,7 +410,6 @@ class TikTok(object):
                 print("[  错误  ]:未找到数据, 请检查后重新运行!\r")
                 return None
 
-            print("[  提示  ]:正在获取接口数据请稍后...\r\n")
             for aweme in datadict["aweme_list"]:
                 # 获取 aweme_id 使用这个接口 https://www.iesdouyin.com/aweme/v1/web/aweme/detail/
                 aweme_id = aweme["aweme_id"]
