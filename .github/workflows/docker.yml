@@ -11,8 +11,8 @@ on:
 # 定义 APP_NAME 用于 docker build-args
 # 定义 DOCKERHUB_REPO 标记 docker hub repo 名称
 env:
-  APP_NAME: TikTokWeb
-  DOCKERHUB_REPO: imgyh/TikTokWeb
+  APP_NAME: tiktokweb
+  DOCKERHUB_REPO: imgyh/tiktokweb
 
 jobs:
   main:
