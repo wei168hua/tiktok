@@ -51,7 +51,6 @@ jobs:
           platforms: |
             linux/amd64
             linux/386
-#            linux/arm/v7
             linux/arm64/v8
           # docker build arg, 注入 APP_NAME/APP_VERSION
           build-args: |
