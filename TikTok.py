@@ -453,7 +453,7 @@ class TikTok(object):
         self.liveDict["status"] = live_json['data']['data'][0]['status']
 
         if self.liveDict["status"] == 4:
-            print('[   📺   ]:当前直播已结束，按回车退出')
+            print('[   📺   ]:当前直播已结束，正在退出')
             return self.liveDict
 
         # 直播标题
