@@ -46,7 +46,7 @@
 2. 使用docker运行
 
 ```
-docker run -d -p 5000:5000 --restart=always imgyh/tiktokweb
+docker run -d -p 5000:5000 --name tiktok --restart=always imgyh/tiktokweb
 ```
 
 3. 本地搭建`python3.9`环境运行
@@ -148,7 +148,7 @@ python TikTokCommand.py -l https://live.douyin.com/802939216127 -p /path/to/down
 
 # 鸣谢
 
-本项目部分思路来自自[TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)
+本项目部分思路来自[TikTokDownload](https://github.com/Johnserf-Seed/TikTokDownload)
 
 # 申明
 
