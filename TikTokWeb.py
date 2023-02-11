@@ -22,8 +22,8 @@ def work(share_link):
 
     url = tk.getShareLink(share_link)
     key_type, key = tk.getKey(url)
-    datadict = tk.getAwemeInfo(key)
-    return datadict
+    datanew, dataraw = tk.getAwemeInfo(key)
+    return datanew
 
 
 app = Flask(__name__)

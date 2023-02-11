@@ -52,8 +52,8 @@ def main():
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=args.path)
     elif key_type == "aweme":
-        datadict = tk.getAwemeInfo(key)
-        tk.awemeDownload(awemeDict=datadict, music=args.music, cover=args.cover, avatar=args.avatar,
+        datanew, dataraw = tk.getAwemeInfo(key)
+        tk.awemeDownload(awemeDict=datanew, music=args.music, cover=args.cover, avatar=args.avatar,
                          savePath=args.path)
     elif key_type == "live":
         live_json = tk.getLiveInfo(key)
