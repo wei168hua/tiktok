@@ -1,4 +1,9 @@
-#  (2023-01-30)
+#  (2023-02-11)
+
+
+### Bug Fixes
+
+* **tiktok:** 修复失效API，增加X-Bogus ([53d3b58](https://github.com/imgyh/tiktok/commit/53d3b5875ecd4de57f4dc4df4c228cf80b15c764))
 
 
 ### Features
