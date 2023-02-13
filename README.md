@@ -145,6 +145,9 @@ python TikTokCommand.py -l https://live.douyin.com/802939216127 -p /path/to/down
 - [ ] 获取分享的音乐链接下的所有作品
 - [ ] 获取热搜榜数据
 - [ ] 多主页链接批量下载
+- [ ] 多线程下载
+- [ ] 保存数据至数据库
+- [ ] 制作成接口
 
 # 鸣谢
 

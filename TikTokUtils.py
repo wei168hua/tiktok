@@ -15,7 +15,6 @@ Change Log  :
 
 import random
 import re
-from urllib.parse import urlencode, unquote
 import json
 import requests
 from TikTokUrls import Urls
@@ -51,33 +50,17 @@ class Utils(object):
         # 去除前后空格
         return result
 
-    def getXbogus(self, url, cookie=None, referer="https://www.douyin.com/"):
+    def getXbogus(self, url, headers=None):
         urls = Urls()
-        headers = {
-            "cookie": cookie,
-            "referer": referer,
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
-        }
         try:
-            if isinstance(url, dict):
-                params = eval(unquote(url, 'utf-8'))
-                url = urlencode(params, safe="=")
-                response = json.loads(requests.post(
-                    urls.GET_XB_DICT + url,
-                    headers=headers).text)
-            if isinstance(url, str):
-                url = url.replace('&', '%26')
-                response = json.loads(requests.post(
-                    urls.GET_XB_PATH + url,
-                    headers=headers).text)
-            else:
-                print('[  提示  ]:传入的参数有误')
+            response = json.loads(requests.post(
+                url= urls.GET_XB_PATH, data={"param" : url}, headers=headers).text)
         except Exception as e:
             print('[  错误  ]:%s' % e)
 
-        params = response["result"][0]["paramsencode"]
-        xb = response["result"][0]["X-Bogus"]["0"]
-        # print('[  调试  ]:%s' % self.params)
+        params = response["param"]
+        xb = response["X-Bogus"]
+
         return params #, xb
 
 

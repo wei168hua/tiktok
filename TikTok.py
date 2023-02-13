@@ -32,9 +32,9 @@ class TikTok(object):
         self.utils = Utils()
         self.result = Result()
         self.headers = {
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36',
-            'referer':'https://www.douyin.com/',
-            'Cookie': 'msToken=%s;odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69;' % self.utils.generate_random_str(107)
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+        'referer': 'https://www.douyin.com/',
+        'Cookie': 'msToken=%s;odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69;' % self.utils.generate_random_str(107)
         }
 
 
@@ -52,7 +52,7 @@ class TikTok(object):
         try:
             r = requests.get(url=url, headers=self.headers)
         except Exception as e:
-            print('[  警告  ]:输入链接有误！\r')
+            print('[  错误  ]:输入链接有误！\r')
             return key_type, key
 
         # 抖音把图集更新为note
@@ -80,7 +80,7 @@ class TikTok(object):
             key_type = "live"
 
         if key is None or key_type is None:
-            print('[  警告  ]:输入链接有误！无法获取 id\r')
+            print('[  错误  ]:输入链接有误！无法获取 id\r')
             return key_type, key
         print('[  提示  ]:作品或者用户的 id = %s\r' % key)
 
@@ -132,9 +132,12 @@ class TikTok(object):
         max_cursor = 0
         self.awemeList = []
 
-        print("[  提示  ]:正在获取接口数据请稍后...\r\n")
-
+        print("[  提示  ]:正在获取所有作品数据请稍后...\r")
+        print("[  提示  ]:会进行多次请求，等待时间较长...\r\n")
+        times = 0
         while True:
+            times = times + 1
+            print("[  提示  ]:正在进行第 " + str(times) + " 次请求...\r")
             if mode == "post":
                 url = self.urls.USER_POST + self.utils.getXbogus(
                     url=f'sec_user_id={sec_uid}&count={count}&max_cursor={max_cursor}&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333')
@@ -168,7 +171,10 @@ class TikTok(object):
 
             # 退出条件
             if datadict["has_more"] != 1:
+                print("[  提示  ]:所有作品数据获取完成...\r\n")
                 break
+            else:
+                print("[  提示  ]:第 " + str(times) + " 次请求成功...\r")
 
         return self.awemeList
 
@@ -191,7 +197,7 @@ class TikTok(object):
             return None
 
         if live_json == {} or live_json['status_code'] != 0:
-            print("[  警告  ]:接口未返回信息\r")
+            print("[  错误  ]:接口未返回信息\r")
             return None
 
         # 清空字典
@@ -284,7 +290,7 @@ class TikTok(object):
 
         try:
             # 使用作品 创建时间+描述 当文件夹
-            file_name = self.utils.replaceStr(awemeDict["create_time"] + awemeDict["desc"])
+            file_name = self.utils.replaceStr(awemeDict["create_time"] + " " + awemeDict["desc"])
             aweme_path = os.path.join(savePath, file_name)
             if not os.path.exists(aweme_path):
                 os.mkdir(aweme_path)

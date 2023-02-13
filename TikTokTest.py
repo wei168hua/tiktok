@@ -47,7 +47,7 @@ def getLiveInfo():
 if __name__ == "__main__":
     # getAwemeInfo()
     # getUserInfo()
-    getLiveInfo()
+    # getLiveInfo()
     pass
 ################################# 测试命令 ######################################################
 # 视频

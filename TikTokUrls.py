@@ -55,24 +55,7 @@ class Urls(object):
         self.FOLLOW_FEED = 'https://www.douyin.com/aweme/v1/web/follow/feed/?'
 
         # X-Bogus Path
-        self.GET_XB_PATH = 'http://47.115.200.238/xg/path?url='
-
-        # X-Bogus Dict
-        self.GET_XB_DICT = 'http://47.115.200.238/xg/dict/?params='
-
-        # X-Bogus Login
-        self.GET_XB_LOGIN = 'http://47.115.200.238/login'
-
-        # X-Bogus Register
-        self.GET_XB_REGISTER = 'http://47.115.200.238/register'
-
-        # X-Bogus Token
-        self.GET_XB_TOKEN = 'http://47.115.200.238/token'
-        #######################################################################################
-
-        ######################################### APP #########################################
-        # X-Gorgon Path
-        self.GET_XG_LOGIN = 'http://47.115.200.238/xog/path?url='
+        self.GET_XB_PATH = 'https://tiktok.199933.xyz/xb'
 
         #######################################################################################
 
