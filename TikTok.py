@@ -148,17 +148,16 @@ class TikTok(object):
                 print("[  错误  ]:模式选择错误, 仅支持post和like, 请检查后重新运行!\r")
                 return None
 
-            try:
-                res = requests.get(url=url, headers=self.headers)
-                datadict = json.loads(res.text)
-                print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据')
-            except Exception as e:
-                print("[  错误  ]:接口未返回数据, 请检查后重新运行!\r")
-                return None
-
-            if datadict["status_code"] != 0:
-                print("[  错误  ]:接口返回状态码[" + datadict["status_code"] + "]异常, 请检查后重新运行!\r")
-                return None
+            while True:
+                # 接口不稳定, 有时服务器不返回数据, 需要重新获取
+                try:
+                    res = requests.get(url=url, headers=self.headers)
+                    datadict = json.loads(res.text)
+                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据')
+                    if datadict is not None and datadict["status_code"] == 0:
+                        break
+                except Exception as e:
+                    print("[  警告  ]:接口未返回数据, 正在重新请求!\r")
 
             for aweme in datadict["aweme_list"]:
                 # 获取 aweme_id

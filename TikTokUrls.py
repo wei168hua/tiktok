@@ -60,6 +60,7 @@ class Urls(object):
         self.FOLLOW_FEED = 'https://www.douyin.com/aweme/v1/web/follow/feed/?'
 
         # X-Bogus Path
+        # 60 秒内,请求同一URI累计超过 600 次,封锁IP 300 秒
         self.GET_XB_PATH = 'https://tiktok.199933.xyz/xb'
 
         #######################################################################################
