@@ -56,10 +56,13 @@ if __name__ == "__main__":
 # 图集
 # python TikTokCommand.py -l https://v.douyin.com/BugrFTN/ -p /mnt/c/project/test2
 # .\TikTokCommand.exe -l https://v.douyin.com/BugrFTN/ -p .\test2
-# 主页作品
+# 主页作品(视频)
 # python TikTokCommand.py -l https://v.douyin.com/BupCppt/ -p /mnt/c/project/test3
 # .\TikTokCommand.exe -l https://v.douyin.com/BupCppt/ -p .\test3
-# 主页喜欢
-# python TikTokCommand.py -l https://v.douyin.com/BusJrfr/ -p /mnt/c/project/test4 -M like
-# .\TikTokCommand.exe -l https://v.douyin.com/BusJrfr/ -p .\test4 -M like
+# 主页作品(视频与图集混合)
+# python TikTokCommand.py -l https://v.douyin.com/B72pdU5/ -p /mnt/c/project/test4
+# .\TikTokCommand.exe -l https://v.douyin.com/B72pdU5/ -p .\test4
+# 主页喜欢(视频)
+# python TikTokCommand.py -l https://v.douyin.com/B72QgDw/ -p /mnt/c/project/test5 -M like
+# .\TikTokCommand.exe -l https://v.douyin.com/B72QgDw/ -p .\test5 -M like
 #################################################################################################

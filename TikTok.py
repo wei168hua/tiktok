@@ -34,7 +34,7 @@ class TikTok(object):
         self.headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
         'referer': 'https://www.douyin.com/',
-        'Cookie': 'msToken=%s;odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69;' % self.utils.generate_random_str(107)
+        'Cookie': '__ac_nonce=063f2dac800532463833e; s_v_web_id=verify_lec77mky_PdkXTRSx_VwYB_4B32_BT52_CM9JP3QLtWnX; msToken=%s;odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69;' % self.utils.generate_random_str(107)
         }
 
 
@@ -140,7 +140,7 @@ class TikTok(object):
             print("[  提示  ]:正在进行第 " + str(times) + " 次请求...\r")
             if mode == "post":
                 url = self.urls.USER_POST + self.utils.getXbogus(
-                    url=f'sec_user_id={sec_uid}&count={count}&max_cursor={max_cursor}&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333')
+                        url=f'sec_uid={sec_uid}&count={count}&max_cursor={max_cursor}')
             elif mode == "like":
                 url = self.urls.USER_FAVORITE_A + self.utils.getXbogus(
                     url=f'sec_user_id={sec_uid}&count={count}&max_cursor={max_cursor}&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333')
@@ -151,12 +151,13 @@ class TikTok(object):
             try:
                 res = requests.get(url=url, headers=self.headers)
                 datadict = json.loads(res.text)
+                print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据')
             except Exception as e:
                 print("[  错误  ]:接口未返回数据, 请检查后重新运行!\r")
                 return None
 
-            if not datadict["aweme_list"]:
-                print("[  错误  ]:未找到数据, 请检查后重新运行!\r")
+            if datadict["status_code"] != 0:
+                print("[  错误  ]:接口返回状态码[" + datadict["status_code"] + "]异常, 请检查后重新运行!\r")
                 return None
 
             for aweme in datadict["aweme_list"]:
@@ -170,7 +171,7 @@ class TikTok(object):
             max_cursor = datadict["max_cursor"]
 
             # 退出条件
-            if datadict["has_more"] != 1:
+            if datadict["has_more"] == 0 or datadict["has_more"] == False:
                 print("[  提示  ]:所有作品数据获取完成...\r\n")
                 break
             else:
@@ -184,9 +185,9 @@ class TikTok(object):
 
         live_api = 'https://live.douyin.com/webcast/room/web/enter/?aid=6383&device_platform=web&web_rid=%s' % (web_rid)
 
-        # 必须用这个 headers
         headers = {
-            'Cookie': 'msToken=tsQyL2_m4XgtIij2GZfyu8XNXBfTGELdreF1jeIJTyktxMqf5MMIna8m1bv7zYz4pGLinNP2TvISbrzvFubLR8khwmAVLfImoWo3Ecnl_956MgOK9kOBdwM=; odin_tt=6db0a7d68fd2147ddaf4db0b911551e472d698d7b84a64a24cf07c49bdc5594b2fb7a42fd125332977218dd517a36ec3c658f84cebc6f806032eff34b36909607d5452f0f9d898810c369cd75fd5fb15; ttwid=1%7CfhiqLOzu_UksmD8_muF_TNvFyV909d0cw8CSRsmnbr0%7C1662368529%7C048a4e969ec3570e84a5faa3518aa7e16332cfc7fbcb789780135d33a34d94d2'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
+            'cookie' : '__ac_nonce=063f2f2fe002b0c1cf5a3; ttwid=1|_P0qI1eym6Of_Wz2s3FhDRThixb46o2hSYqHFIcdaHM|1676866302|3dd715d4512ff13abbd1aaedc19257b8bfe55b2bbbcad6a95de237776729ba54'
         }
 
         try:

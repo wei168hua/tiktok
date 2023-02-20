@@ -28,7 +28,12 @@ class Urls(object):
         self.USER_DETAIL = 'https://www.douyin.com/aweme/v1/web/user/profile/other/?'
 
         # 用户作品
-        self.USER_POST = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'
+        # cookies 暂时只需要 __ac_nonce, s_v_web_id两个参数
+        # url 暂时不需要携带 msToken, X-Bogus, _signature
+        # 每次返回数据很少
+        self.USER_POST = 'https://m.douyin.com/web/api/v2/aweme/post/?'
+        # 2023/02/19 失效
+        # self.USER_POST = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'
 
         # 作品信息
         self.POST_DETAIL = 'https://www.douyin.com/aweme/v1/web/aweme/detail/?'
