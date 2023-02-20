@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * **tiktok:** 修复主页作品接口与直播接口 ([909b9f3](https://github.com/imgyh/tiktok/commit/909b9f3f1cec9684da33f63aeb816aaab2e7e6b9))
+* **tiktok:** 修复主页作品接口获取数据不稳定, 增加X-Bogus接口限制 ([62072e8](https://github.com/imgyh/tiktok/commit/62072e881eb3531df68f9fe6d8bdab03a4f00790))
 
 
 #  (2023-02-13)
