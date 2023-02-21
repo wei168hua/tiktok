@@ -39,6 +39,7 @@ class Urls(object):
         self.POST_DETAIL = 'https://www.douyin.com/aweme/v1/web/aweme/detail/?'
 
         # 用户喜欢A
+        # 需要 odin_tt
         self.USER_FAVORITE_A = 'https://www.douyin.com/aweme/v1/web/aweme/favorite/?'
 
         # 用户喜欢B
@@ -58,6 +59,14 @@ class Urls(object):
 
         # 关注用户作品
         self.FOLLOW_FEED = 'https://www.douyin.com/aweme/v1/web/follow/feed/?'
+
+        # 合集下所有作品
+        # 只需要X-Bogus
+        self.USER_MIX = 'https://www.douyin.com/aweme/v1/web/mix/aweme/?'
+
+        # 用户所有合集列表
+        # 需要 ttwid
+        self.USER_MIX_LIST = 'https://www.douyin.com/aweme/v1/web/mix/list/?'
 
         # X-Bogus Path
         # 60 秒内,请求同一URI累计超过 600 次,封锁IP 300 秒
