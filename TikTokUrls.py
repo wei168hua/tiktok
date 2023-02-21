@@ -28,7 +28,7 @@ class Urls(object):
         self.USER_DETAIL = 'https://www.douyin.com/aweme/v1/web/user/profile/other/?'
 
         # 用户作品
-        # cookies 暂时只需要 __ac_nonce, s_v_web_id两个参数
+        # cookies 暂时只需要 __ac_signature, s_v_web_id两个参数, 好像会过期
         # url 暂时不需要携带 msToken, X-Bogus, _signature
         # 每次返回数据很少
         self.USER_POST = 'https://m.douyin.com/web/api/v2/aweme/post/?'
