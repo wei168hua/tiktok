@@ -259,7 +259,9 @@ class Result(object):
                     # 赋值
                     dataNew[item] = dataRaw[item]
             except Exception as e:
-                print("[  警告  ]:转换数据时在接口中未找到 %s\r" % (item))
+                # 删除这个警告, 总是让人误会出错了
+                # print("[  警告  ]:转换数据时在接口中未找到 %s\r" % (item))
+                pass
 
     def clearDict(self, data):
         for item in data:
