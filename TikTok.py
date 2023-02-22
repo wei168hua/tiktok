@@ -102,19 +102,20 @@ class TikTok(object):
         # 主页作品接口返回 'aweme_list'->['aweme_detail']
         jx_url = self.urls.POST_DETAIL + self.utils.getXbogus(
             url=f'aweme_id={aweme_id}&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333')
-        try:
-            raw = requests.get(url=jx_url, headers=self.headers).text
-            datadict = json.loads(raw)
-        except Exception as e:
-            print("[  错误  ]:接口未返回数据, 请检查后重新运行!\r")
-            return None
+
+        while True:
+            # 接口不稳定, 有时服务器不返回数据, 需要重新获取
+            try:
+                raw = requests.get(url=jx_url, headers=self.headers).text
+                datadict = json.loads(raw)
+                if datadict is not None and datadict['aweme_detail'] is not None and datadict["status_code"] == 0:
+                    break
+            except Exception as e:
+                print("[  警告  ]:接口未返回数据, 正在重新请求!\r")
 
         # 清空self.awemeDict
         self.result.clearDict(self.result.awemeDict)
 
-        if datadict['aweme_detail'] is None:
-            print('[  错误  ]:作品不存在, 请检查后重新运行!\r')
-            return None
         # 默认为视频
         awemeType = 0
         try:
