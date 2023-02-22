@@ -94,7 +94,7 @@ class TikTok(object):
     # 传入 aweme_id
     # 返回 数据 字典
     def getAwemeInfo(self, aweme_id):
-        print('[  提示  ]:正在请求的作品 id = %s\r\n' % aweme_id)
+        print('[  提示  ]:正在请求的作品 id = %s\r' % aweme_id)
         if aweme_id is None:
             return None
 
@@ -145,7 +145,7 @@ class TikTok(object):
         times = 0
         while True:
             times = times + 1
-            print("[  提示  ]:正在进行第 " + str(times) + " 次请求...\r")
+            print("[  提示  ]:正在对 [主页] 进行第 " + str(times) + " 次请求...\r")
             if mode == "post":
                 url = self.urls.USER_POST + self.utils.getXbogus(
                         url=f'sec_uid={sec_uid}&count={count}&max_cursor={max_cursor}')
@@ -161,7 +161,8 @@ class TikTok(object):
                 try:
                     res = requests.get(url=url, headers=self.headers)
                     datadict = json.loads(res.text)
-                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据')
+                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据\r')
+                    print('[  提示  ]:开始对 ' + str(len(datadict["aweme_list"])) + ' 条数据请求作品详情\r\n')
                     if datadict is not None and datadict["status_code"] == 0:
                         break
                 except Exception as e:
@@ -179,10 +180,10 @@ class TikTok(object):
 
             # 退出条件
             if datadict["has_more"] == 0 or datadict["has_more"] == False:
-                print("[  提示  ]:所有作品数据获取完成...\r\n")
+                print("\r\n[  提示  ]: [主页] 下所有作品数据获取完成...\r\n")
                 break
             else:
-                print("[  提示  ]:第 " + str(times) + " 次请求成功...\r\n")
+                print("\r\n[  提示  ]:[主页] 第 " + str(times) + " 次请求成功...\r\n")
 
         return awemeList
 
@@ -278,7 +279,7 @@ class TikTok(object):
         times = 0
         while True:
             times = times + 1
-            print("[  提示  ]:正在进行第 " + str(times) + " 次请求...\r")
+            print("[  提示  ]:正在对 [合集] 进行第 " + str(times) + " 次请求...\r")
 
             url = 'https://www.douyin.com/aweme/v1/web/mix/aweme/?' + self.utils.getXbogus(
                 url=f'device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&mix_id={mix_id}&cursor={cursor}&count={count}')
@@ -288,7 +289,8 @@ class TikTok(object):
                 try:
                     res = requests.get(url=url, headers=self.headers)
                     datadict = json.loads(res.text)
-                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据')
+                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据\r')
+                    print('[  提示  ]:开始对 ' + str(len(datadict["aweme_list"])) + ' 条数据请求作品详情\r\n')
                     if datadict is not None:
                         break
                 except Exception as e:
@@ -306,10 +308,10 @@ class TikTok(object):
 
             # 退出条件
             if datadict["has_more"] == 0 or datadict["has_more"] == False:
-                print("\r\n[  提示  ]:合集下所有作品数据获取完成...\r\n")
+                print("\r\n[  提示  ]:[合集] 下所有作品数据获取完成...\r\n")
                 break
             else:
-                print("[  提示  ]:第 " + str(times) + " 次请求成功...\r\n")
+                print("\r\n[  提示  ]:[合集] 第 " + str(times) + " 次请求成功...\r\n")
 
         return awemeList
 
@@ -321,12 +323,12 @@ class TikTok(object):
         cursor = 0
         mixIdNameDict = {}
 
-        print("[  提示  ]:正在获取所有合集 id 数据请稍后...\r")
+        print("[  提示  ]:正在获取主页下所有合集 id 数据请稍后...\r")
         print("[  提示  ]:会进行多次请求，等待时间较长...\r\n")
         times = 0
         while True:
             times = times + 1
-            print("[  提示  ]:正在进行第 " + str(times) + " 次请求...\r")
+            print("[  提示  ]:正在对 [合集列表] 进行第 " + str(times) + " 次请求...\r")
 
             url = self.urls.USER_MIX_LIST + self.utils.getXbogus(
                 url=f'device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&sec_user_id={sec_uid}&count={count}&cursor={cursor}')
@@ -336,7 +338,8 @@ class TikTok(object):
                 try:
                     res = requests.get(url=url, headers=self.headers)
                     datadict = json.loads(res.text)
-                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["mix_infos"])) + ' 条数据')
+                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["mix_infos"])) + ' 条数据\r')
+                    print('[  提示  ]:开始对 ' + str(len(datadict["mix_infos"])) + ' 条数据请求作品详情\r\n')
                     if datadict is not None and datadict["status_code"] == 0:
                         break
                 except Exception as e:
@@ -350,10 +353,10 @@ class TikTok(object):
 
             # 退出条件
             if datadict["has_more"] == 0 or datadict["has_more"] == False:
-                print("[  提示  ]:所有合集 id 数据获取完成...\r\n")
+                print("[  提示  ]:[合集列表] 下所有合集 id 数据获取完成...\r\n")
                 break
             else:
-                print("[  提示  ]:第 " + str(times) + " 次请求成功...\r\n")
+                print("\r\n[  提示  ]:[合集列表] 第 " + str(times) + " 次请求成功...\r\n")
 
         return mixIdNameDict
 
@@ -366,16 +369,16 @@ class TikTok(object):
         content_size = int(response.headers['content-length'])  # 下载文件总大小
         try:
             if response.status_code == 200:  # 判断是否响应成功
-                print('[ 开始下载 ]:文件大小:{size:.2f} MB'.format(
+                print('[开始下载]:文件大小:{size:.2f} MB'.format(
                     size=content_size / chunk_size / 1024))  # 开始下载，显示下载文件大小
                 with open(filepath, 'wb') as file:  # 显示进度条
                     for data in response.iter_content(chunk_size=chunk_size):
                         file.write(data)
                         size += len(data)
-                        print('\r' + '[ 下载进度 ]:%s%.2f%%' % (
+                        print('\r' + '[下载进度]:%s%.2f%%' % (
                             '>' * int(size * 50 / content_size), float(size / content_size * 100)), end=' ')
             end = time.time()  # 下载结束时间
-            print('\n' + '[ 下载完成 ]:耗时: %.2f秒\n' % (
+            print('\n' + '[下载完成]:耗时: %.2f秒\n' % (
                     end - start))  # 输出下载用时时间
         except Exception as e:
             # 下载异常 删除原来下载的文件, 可能未下成功
@@ -397,7 +400,7 @@ class TikTok(object):
                 os.mkdir(aweme_path)
 
             # 保存获取到的字典信息
-            print("[  提示  ]:正在保存获取到的信息到result.json\r\n")
+            print("[  提示  ]:正在保存获取到的信息到 result.json\r\n")
             with open(os.path.join(aweme_path, "result.json"), "w", encoding='utf-8') as f:
                 f.write(json.dumps(awemeDict, ensure_ascii=False, indent=2))
                 f.close()
@@ -486,7 +489,7 @@ class TikTok(object):
         if not os.path.exists(savePath):
             os.mkdir(savePath)
         for ind, aweme in enumerate(awemeList):
-            print("[  提示  ]:正在下载 %s 的作品 %s/%s\r"
+            print("[  提示  ]:正在下载 [%s] 的作品 %s/%s\r\n"
                   % (aweme["author"]["nickname"], str(ind + 1), len(awemeList)))
 
             self.awemeDownload(aweme, music, cover, avatar, savePath)

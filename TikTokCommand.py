@@ -59,12 +59,12 @@ def main():
         mixIdNameDict = tk.getUserAllMixInfo(key, 35)
 
         for mix_id in mixIdNameDict:
-            print(f'\r\n[  提示  ]:正在下载合集 [{mixIdNameDict[mix_id]}] 中的作品\r\n')
+            print(f'[  提示  ]:正在下载合集 [{mixIdNameDict[mix_id]}] 中的作品\r\n')
             mix_file_name = utils.replaceStr(mixIdNameDict[mix_id])
             datalist = tk.getMixInfo(mix_id, 35)
             tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=os.path.join(args.path, mix_file_name))
-            print(f'\r\n[  提示  ]:合集 [{mixIdNameDict[mix_id]}] 中的作品下载完成\r\n')
+            print(f'[  提示  ]:合集 [{mixIdNameDict[mix_id]}] 中的作品下载完成\r\n')
     elif key_type == "mix":
         datalist = tk.getMixInfo(key,35)
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
