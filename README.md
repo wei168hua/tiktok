@@ -24,8 +24,8 @@
 
 ## 抖音批量下载工具 Feature
 
-* 支持个人主页链接、作品分享链接、抖音直播Web链接
-* 支持单个作品下载、主页作品下载、主页喜欢下载
+* 支持个人主页链接、作品分享链接、抖音直播Web链接、合集链接
+* 支持单个作品下载、主页作品下载、主页喜欢下载、单个合集下载、主页所有合集下载
 * 下载视频、视频封面、音乐、头像
 * 去水印下载
 * 自动跳过已下载
@@ -86,13 +86,13 @@ python TikTokCommand.py -h
 
 ```
 -h, --help                  展示帮助页
---link LINK, -l LINK        1.作品(视频或图集)与个人主页抖音分享链接(删除文案, 保证只有URL, https://v.douyin.com/kcvMpuN/)
+--link LINK, -l LINK        1.作品(视频或图集)、合集、个人主页抖音分享链接(删除文案, 保证只有URL, https://v.douyin.com/kcvMpuN/)
                             2.解析直播网页版网址(https://live.douyin.com/802939216127)
 --path PATH, -p PATH        下载保存位置
 --music MUSIC, -m MUSIC     是否下载视频中的音乐(True/False), 默认为True
 --cover COVER, -c COVER     是否下载视频的封面(True/False), 默认为True, 当下载视频时有效
 --avatar AVATAR, -a AVATAR  是否下载作者的头像(True/False), 默认为True
---mode MODE, -M MODE        link是个人主页时, 设置下载发布的作品(post)或喜欢的作品(like), 默认为post
+--mode MODE, -M MODE        link是个人主页时, 设置下载发布的作品(post)或喜欢的作品(like)或者用户所有合集(mix), 默认为post
 ```
 
 - 下载单个作品
@@ -122,6 +122,24 @@ linux与mac用户:
 python TikTokCommand.py -l https://v.douyin.com/kcvSCe9/ -p /path/to/downdir -M like
 ```
 
+- 下载单个合集
+
+```
+windows用户:
+.\TikTokCommand.exe -l https://v.douyin.com/B3J63Le/ -p C:\project\test
+linux与mac用户:
+python TikTokCommand.py -l https://v.douyin.com/B3J63Le/ -p /path/to/downdir
+```
+
+- 下载主页全部合集
+
+```
+windows用户:
+.\TikTokCommand.exe -l https://v.douyin.com/B38oovu/ -p C:\project\test -M mix
+linux与mac用户:
+python TikTokCommand.py -l https://v.douyin.com/B38oovu/ -p /path/to/downdir -M mix
+```
+
 - 关闭头像下载, cover, music 也是一样的设置对应选项为 False
 
 ```
@@ -142,6 +160,8 @@ python TikTokCommand.py -l https://live.douyin.com/802939216127 -p /path/to/down
 
 # ToDo
 
+- [x] 单个合集下载
+- [x] 主页所有合集下载
 - [ ] 获取分享的音乐链接下的所有作品
 - [ ] 获取热搜榜数据
 - [ ] 多主页链接批量下载
@@ -160,3 +180,7 @@ python TikTokCommand.py -l https://live.douyin.com/802939216127 -p /path/to/down
 # License
 
 [MIT](https://opensource.org/licenses/MIT) © [imgyh](https://www.imgyh.com/)
+
+# Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=imgyh/tiktok&type=Date)](https://star-history.com/#imgyh/tiktok&Date)
