@@ -192,15 +192,11 @@ class TikTok(object):
 
         # web_rid = live_url.replace('https://live.douyin.com/', '')
 
-        live_api = 'https://live.douyin.com/webcast/room/web/enter/?aid=6383&device_platform=web&web_rid=%s' % (web_rid)
-
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
-            'cookie' : '__ac_nonce=063f2f2fe002b0c1cf5a3; ttwid=1|_P0qI1eym6Of_Wz2s3FhDRThixb46o2hSYqHFIcdaHM|1676866302|3dd715d4512ff13abbd1aaedc19257b8bfe55b2bbbcad6a95de237776729ba54'
-        }
+        live_api = self.urls.LIVE + self.utils.getXbogus(
+                    url=f'aid=6383&device_platform=web&web_rid={web_rid}')
 
         try:
-            response = requests.get(live_api, headers=headers)
+            response = requests.get(live_api, headers=self.headers)
             live_json = json.loads(response.text)
         except Exception as e:
             print("[  错误  ]:接口未返回数据, 请检查后重新运行!\r")
