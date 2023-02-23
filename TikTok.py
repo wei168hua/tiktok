@@ -34,7 +34,7 @@ class TikTok(object):
         self.headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
         'referer': 'https://www.douyin.com/',
-        'Cookie': 'ttwid=1|sGp2L-Krm46cXHcK7BsKghavVeVQIIOYtQInA1LV0-w|1676899557|3e483426230c481bd34f4d6529d6252372c154b75be7d4a2baec8edbfd0a742c; __ac_signature=_02B4Z6wo00f01CEKaogAAIDBqkHxaCCYIyghKm4AAGu9c3; s_v_web_id=verify_ledo1j1t_0NwhDQFJ_nLca_42o5_8tAA_T8CWm5E2M6LF; msToken=%s;odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69;' % self.utils.generate_random_str(107)
+        'Cookie': f"msToken={self.utils.generate_random_str(107)};odin_tt=324fb4ea4a89c0c05827e18a1ed9cf9bf8a17f7705fcc793fec935b637867e2a5a9b8168c885554d029919117a18ba69; ttwid=1%7CWBuxH_bhbuTENNtACXoesI5QHV2Dt9-vkMGVHSRRbgY%7C1677118712%7C1d87ba1ea2cdf05d80204aea2e1036451dae638e7765b8a4d59d87fa05dd39ff; bd_ticket_guard_client_data=eyJiZC10aWNrZXQtZ3VhcmQtdmVyc2lvbiI6MiwiYmQtdGlja2V0LWd1YXJkLWNsaWVudC1jc3IiOiItLS0tLUJFR0lOIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLVxyXG5NSUlCRFRDQnRRSUJBREFuTVFzd0NRWURWUVFHRXdKRFRqRVlNQllHQTFVRUF3d1BZbVJmZEdsamEyVjBYMmQxXHJcbllYSmtNRmt3RXdZSEtvWkl6ajBDQVFZSUtvWkl6ajBEQVFjRFFnQUVKUDZzbjNLRlFBNUROSEcyK2F4bXAwNG5cclxud1hBSTZDU1IyZW1sVUE5QTZ4aGQzbVlPUlI4NVRLZ2tXd1FJSmp3Nyszdnc0Z2NNRG5iOTRoS3MvSjFJc3FBc1xyXG5NQ29HQ1NxR1NJYjNEUUVKRGpFZE1Cc3dHUVlEVlIwUkJCSXdFSUlPZDNkM0xtUnZkWGxwYmk1amIyMHdDZ1lJXHJcbktvWkl6ajBFQXdJRFJ3QXdSQUlnVmJkWTI0c0RYS0c0S2h3WlBmOHpxVDRBU0ROamNUb2FFRi9MQnd2QS8xSUNcclxuSURiVmZCUk1PQVB5cWJkcytld1QwSDZqdDg1czZZTVNVZEo5Z2dmOWlmeTBcclxuLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tXHJcbiJ9"
         }
 
 
@@ -148,7 +148,7 @@ class TikTok(object):
             print("[  提示  ]:正在对 [主页] 进行第 " + str(times) + " 次请求...\r")
             if mode == "post":
                 url = self.urls.USER_POST + self.utils.getXbogus(
-                        url=f'sec_uid={sec_uid}&count={count}&max_cursor={max_cursor}')
+                        url=f'device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&sec_user_id={sec_uid}&count={count}&max_cursor={max_cursor}')
             elif mode == "like":
                 url = self.urls.USER_FAVORITE_A + self.utils.getXbogus(
                     url=f'sec_user_id={sec_uid}&count={count}&max_cursor={max_cursor}&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333')

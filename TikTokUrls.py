@@ -31,9 +31,9 @@ class Urls(object):
         # cookies 暂时只需要 __ac_signature, s_v_web_id两个参数, 好像会过期
         # url 暂时不需要携带 msToken, X-Bogus, _signature
         # 每次返回数据很少
-        self.USER_POST = 'https://m.douyin.com/web/api/v2/aweme/post/?'
+        # self.USER_POST = 'https://m.douyin.com/web/api/v2/aweme/post/?'
         # 2023/02/19 失效
-        # self.USER_POST = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'
+        self.USER_POST = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'
 
         # 作品信息
         self.POST_DETAIL = 'https://www.douyin.com/aweme/v1/web/aweme/detail/?'
