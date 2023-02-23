@@ -1,3 +1,12 @@
+#  (2023-02-23)
+
+
+### Bug Fixes
+
+* **live:** 统一直播获取的header, 直播接口添加X-Bogus ([197d126](https://github.com/imgyh/tiktok/commit/197d12627d855f3353dba3fd68f0b308593f62e8))
+* **tiktok:** 修复主页作品接口 ([e3029be](https://github.com/imgyh/tiktok/commit/e3029be42b021dcdad0736800a4f13428ddd5b98))
+
+
 #  (2023-02-20)
 
 
