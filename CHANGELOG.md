@@ -5,6 +5,14 @@
 
 * **live:** 统一直播获取的header, 直播接口添加X-Bogus ([197d126](https://github.com/imgyh/tiktok/commit/197d12627d855f3353dba3fd68f0b308593f62e8))
 * **tiktok:** 修复主页作品接口 ([e3029be](https://github.com/imgyh/tiktok/commit/e3029be42b021dcdad0736800a4f13428ddd5b98))
+* **tiktok:** 修复用户主页作品接口 ([8a01e68](https://github.com/imgyh/tiktok/commit/8a01e681b5206c27a44f4ba10f840e856686e33b))
+* **tiktok:** 添加单个作品获取失败后重试逻辑 ([ac73a97](https://github.com/imgyh/tiktok/commit/ac73a97c19840bd7147f3a7e4b400a37b1365fb2))
+
+
+### Features
+
+* **tiktok:** 增加合集下载功能 ([b95d718](https://github.com/imgyh/tiktok/commit/b95d7188282de5474861043ab011ed27baa79796))
+
 
 
 #  (2023-02-20)
