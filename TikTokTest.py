@@ -64,12 +64,12 @@ def getUserAllMixInfo():
 
 def test():
     utils=TikTokUtils.Utils()
-    user_all_mix_link = 'https://www.douyin.com/aweme/v1/web/mix/list/?'+\
-                        utils.getXbogus(url='device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&sec_user_id=MS4wLjABAAAAMOcqSYZFcXKaEwaQuq3nZ86x7B-FSVn-qFVzV_vXE78x5OvstR-jKsdcV9FcQN5N&count=35&cursor=0')
-    headers = {
+    user_all_mix_link = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'+\
+                        utils.getXbogus(url='device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&sec_user_id=MS4wLjABAAAA7G3S983y0b0m_7bcTSK7UzY-3hFJdHvMv-aVbbz0kIg&max_cursor=1626149119000&count=10')
+    headers1 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
         'referer': 'https://www.douyin.com/',
-        'Cookie': 'ttwid=1|sGp2L-Krm46cXHcK7BsKghavVeVQIIOYtQInA1LV0-w|1676899557|3e483426230c481bd34f4d6529d6252372c154b75be7d4a2baec8edbfd0a742c;'
+        'Cookie': 'ttwid=1%7CWBuxH_bhbuTENNtACXoesI5QHV2Dt9-vkMGVHSRRbgY%7C1677118712%7C1d87ba1ea2cdf05d80204aea2e1036451dae638e7765b8a4d59d87fa05dd39ff; bd_ticket_guard_client_data=eyJiZC10aWNrZXQtZ3VhcmQtdmVyc2lvbiI6MiwiYmQtdGlja2V0LWd1YXJkLWNsaWVudC1jc3IiOiItLS0tLUJFR0lOIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLVxyXG5NSUlCRFRDQnRRSUJBREFuTVFzd0NRWURWUVFHRXdKRFRqRVlNQllHQTFVRUF3d1BZbVJmZEdsamEyVjBYMmQxXHJcbllYSmtNRmt3RXdZSEtvWkl6ajBDQVFZSUtvWkl6ajBEQVFjRFFnQUVKUDZzbjNLRlFBNUROSEcyK2F4bXAwNG5cclxud1hBSTZDU1IyZW1sVUE5QTZ4aGQzbVlPUlI4NVRLZ2tXd1FJSmp3Nyszdnc0Z2NNRG5iOTRoS3MvSjFJc3FBc1xyXG5NQ29HQ1NxR1NJYjNEUUVKRGpFZE1Cc3dHUVlEVlIwUkJCSXdFSUlPZDNkM0xtUnZkWGxwYmk1amIyMHdDZ1lJXHJcbktvWkl6ajBFQXdJRFJ3QXdSQUlnVmJkWTI0c0RYS0c0S2h3WlBmOHpxVDRBU0ROamNUb2FFRi9MQnd2QS8xSUNcclxuSURiVmZCUk1PQVB5cWJkcytld1QwSDZqdDg1czZZTVNVZEo5Z2dmOWlmeTBcclxuLS0tLS1FTkQgQ0VSVElGSUNBVEUgUkVRVUVTVC0tLS0tXHJcbiJ9'
     }
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
@@ -79,10 +79,11 @@ def test():
     }
     import requests
 
-    res = requests.get(user_all_mix_link,headers=headers)
+    res = requests.get(user_all_mix_link,headers=headers1)
     print(res.text)
 
 if __name__ == "__main__":
+    # test()
     # getUserAllMixInfo()
     # getMixInfo()
     # getAwemeInfo()
