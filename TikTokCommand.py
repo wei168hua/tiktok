@@ -29,11 +29,11 @@ def argument():
     parser.add_argument("--path", "-p", help="下载保存位置",
                         type=str, required=True)
     parser.add_argument("--music", "-m", help="是否下载视频中的音乐(True/False), 默认为True",
-                        type=bool, required=False, default=True)
+                        type=Utils().str2bool, required=False, default=True)
     parser.add_argument("--cover", "-c", help="是否下载视频的封面(True/False), 默认为True, 当下载视频时有效",
-                        type=bool, required=False, default=True)
+                        type=Utils().str2bool, required=False, default=True)
     parser.add_argument("--avatar", "-a", help="是否下载作者的头像(True/False), 默认为True",
-                        type=bool, required=False, default=True)
+                        type=Utils().str2bool, required=False, default=True)
     parser.add_argument("--mode", "-M", help="link是个人主页时, 设置下载发布的作品(post)或喜欢的作品(like)或者用户所有合集(mix), 默认为post",
                         type=str, required=False, default="post")
     args = parser.parse_args()

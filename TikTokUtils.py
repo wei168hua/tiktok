@@ -54,14 +54,24 @@ class Utils(object):
         urls = Urls()
         try:
             response = json.loads(requests.post(
-                url= urls.GET_XB_PATH, data={"param" : url}, headers=headers).text)
+                url=urls.GET_XB_PATH, data={"param": url}, headers=headers).text)
             params = response["param"]
             xb = response["X-Bogus"]
         except Exception as e:
             print('[  错误  ]:X-Bogus接口异常, 可能是访问流量高, 接口限流请稍等几分钟再次尝试')
             return
 
-        return params #, xb
+        return params  # , xb
+
+    def str2bool(self, v):
+        if isinstance(v, bool):
+            return v
+        if v.lower() in ('yes', 'true', 't', 'y', '1'):
+            return True
+        elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+            return False
+        else:
+            return True
 
 
 if __name__ == "__main__":
