@@ -62,6 +62,15 @@ def getUserAllMixInfo():
     mixIdNameDict = tk.getUserAllMixInfo(key, count=35)
     print(mixIdNameDict)
 
+def getMusicInfo():
+    music_link = 'https://v.douyin.com/S6YMNXs/'
+    tk = TikTok()
+
+    url = tk.getShareLink(music_link)
+    key_type, key = tk.getKey(url)
+    awemeList = tk.getMusicInfo(key,count=35)
+    print(len(awemeList))
+
 def test():
     utils=TikTokUtils.Utils()
     user_all_mix_link = 'https://www.douyin.com/aweme/v1/web/aweme/post/?'+\
@@ -84,6 +93,7 @@ def test():
 
 if __name__ == "__main__":
     # test()
+    # getMusicInfo()
     # getUserAllMixInfo()
     # getMixInfo()
     # getAwemeInfo()
@@ -115,4 +125,7 @@ if __name__ == "__main__":
 # 用户主页下所有合集
 # python TikTokCommand.py -l https://v.douyin.com/B38oovu/ -p /mnt/c/project/test7 -M mix
 # .\TikTokCommand.exe -l https://v.douyin.com/B38oovu/ -p .\test7 -M mix
+# 音乐集合
+# python TikTokCommand.py -l https://v.douyin.com/S6YMNXs/ -p /mnt/c/project/test8
+# .\TikTokCommand.exe -l https://v.douyin.com/S6YMNXs/ -p .\test8
 #################################################################################################
