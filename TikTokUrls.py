@@ -71,6 +71,9 @@ class Urls(object):
         # 直播
         self.LIVE = 'https://live.douyin.com/webcast/room/web/enter/?'
 
+        # 音乐
+        self.MUSIC = 'https://www.douyin.com/aweme/v1/web/music/aweme/?'
+
         # X-Bogus Path
         # 60 秒内,请求同一URI累计超过 600 次,封锁IP 300 秒
         self.GET_XB_PATH = 'https://tiktok.199933.xyz/xb'
