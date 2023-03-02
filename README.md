@@ -24,8 +24,8 @@
 
 ## 抖音批量下载工具 Feature
 
-* 支持个人主页链接、作品分享链接、抖音直播Web链接、合集链接
-* 支持单个作品下载、主页作品下载、主页喜欢下载、单个合集下载、主页所有合集下载
+* 支持个人主页链接、作品分享链接、抖音直播Web链接、合集链接、音乐集合链接
+* 支持单个作品下载、主页作品下载、主页喜欢下载、单个合集下载、主页所有合集下载、音乐集合下载
 * 下载视频、视频封面、音乐、头像
 * 去水印下载
 * 自动跳过已下载
@@ -140,6 +140,15 @@ linux与mac用户:
 python TikTokCommand.py -l https://v.douyin.com/B38oovu/ -p /path/to/downdir -M mix
 ```
 
+- 下载音乐集合下所有视频
+
+```
+windows用户:
+.\TikTokCommand.exe -l https://v.douyin.com/S6YMNXs/ -p C:\project\test
+linux与mac用户:
+python TikTokCommand.py -l https://v.douyin.com/S6YMNXs/ -p /path/to/downdir
+```
+
 - 关闭头像下载, cover, music 也是一样的设置对应选项为 False
 
 ```
@@ -162,7 +171,7 @@ python TikTokCommand.py -l https://live.douyin.com/802939216127 -p /path/to/down
 
 - [x] 单个合集下载
 - [x] 主页所有合集下载
-- [ ] 获取分享的音乐链接下的所有作品
+- [x] 获取分享的音乐链接下的所有作品
 - [ ] 获取热搜榜数据
 - [ ] 多主页链接批量下载
 - [ ] 多线程下载
