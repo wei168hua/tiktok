@@ -1,3 +1,12 @@
+# [](https://github.com/imgyh/tiktok/compare/v1.5.0...v) (2023-03-02)
+
+
+### Bug Fixes
+
+* **tiktok:** cookies增加passport_csrf_token ([ebe3be4](https://github.com/imgyh/tiktok/commit/ebe3be43ef676c39cd1cd63cc606df1a9e5b1995))
+
+
+
 #  (2023-03-02)
 
 
