@@ -81,6 +81,10 @@ class TikTok(object):
             # 获取作品 aweme_id
             key = re.findall('collection/(\d+)?', urlstr)[0]
             key_type = "mix"
+        elif "/music/" in urlstr:
+            # 获取作品 aweme_id
+            key = re.findall('music/(\d+)?', urlstr)[0]
+            key_type = "music"
         elif "live.douyin.com" in r.url:
             key = r.url.replace('https://live.douyin.com/', '')
             key_type = "live"
@@ -355,6 +359,55 @@ class TikTok(object):
                 print("\r\n[  提示  ]:[合集列表] 第 " + str(times) + " 次请求成功...\r\n")
 
         return mixIdNameDict
+
+    def getMusicInfo(self, music_id: str, count=35):
+        print('[  提示  ]:正在请求的音乐集合 id = %s\r\n' % music_id)
+        if music_id is None:
+            return None
+
+        cursor = 0
+        awemeList = []
+
+        print("[  提示  ]:正在获取音乐集合下的所有作品数据请稍后...\r")
+        print("[  提示  ]:会进行多次请求，等待时间较长...\r\n")
+        times = 0
+        while True:
+            times = times + 1
+            print("[  提示  ]:正在对 [音乐集合] 进行第 " + str(times) + " 次请求...\r")
+
+            url = self.urls.MUSIC + self.utils.getXbogus(
+                url=f'device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&music_id={music_id}&cursor={cursor}&count={count}')
+
+            while True:
+                # 接口不稳定, 有时服务器不返回数据, 需要重新获取
+                try:
+                    res = requests.get(url=url, headers=self.headers)
+                    datadict = json.loads(res.text)
+                    print('[  提示  ]:本次请求返回 ' + str(len(datadict["aweme_list"])) + ' 条数据\r')
+                    print('[  提示  ]:开始对 ' + str(len(datadict["aweme_list"])) + ' 条数据请求作品详情\r\n')
+                    if datadict is not None:
+                        break
+                except Exception as e:
+                    print("[  警告  ]:接口未返回数据, 正在重新请求!\r")
+
+            for aweme in datadict["aweme_list"]:
+                # 获取 aweme_id
+                aweme_id = aweme["aweme_id"]
+                # 深拷贝 dict 不然list里面全是同样的数据
+                datanew, dataraw = self.getAwemeInfo(aweme_id)
+                awemeList.append(copy.deepcopy(datanew))
+
+            # 更新 cursor
+            cursor = datadict["cursor"]
+
+            # 退出条件
+            if datadict["has_more"] == 0 or datadict["has_more"] == False:
+                print("\r\n[  提示  ]:[音乐集合] 下所有作品数据获取完成...\r\n")
+                break
+            else:
+                print("\r\n[  提示  ]:[音乐集合] 第 " + str(times) + " 次请求成功...\r\n")
+
+        return awemeList
 
     # 来自 https://blog.csdn.net/weixin_43347550/article/details/105248223
     def progressBarDownload(self, url, filepath):

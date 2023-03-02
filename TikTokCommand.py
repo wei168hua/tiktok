@@ -69,6 +69,10 @@ def main():
         datalist = tk.getMixInfo(key,35)
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=args.path)
+    elif key_type == "music":
+        datalist = tk.getMusicInfo(key,35)
+        tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
+                        savePath=args.path)
     elif key_type == "aweme":
         datanew, dataraw = tk.getAwemeInfo(key)
         tk.awemeDownload(awemeDict=datanew, music=args.music, cover=args.cover, avatar=args.avatar,
