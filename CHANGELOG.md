@@ -1,3 +1,20 @@
+#  (2023-03-02)
+
+
+### Bug Fixes
+
+* **command:** 修复头像封面音乐总是会下载 ([665ca47](https://github.com/imgyh/tiktok/commit/665ca47b08623699606d56e424eb096a92afa9fe))
+* **tiktok:** 自动获取ttwid ([c6bcff6](https://github.com/imgyh/tiktok/commit/c6bcff67da8a659afb1c722ab40da733f1a79403))
+
+
+### Features
+
+* **tiktok:** 增加下载前n个作品功能 ([4efeb62](https://github.com/imgyh/tiktok/commit/4efeb62701acc6cf8d9fd06d1a80499a7ad5c6cc))
+* **tiktok:** 增加音乐合集批量下载功能 ([b3aadf6](https://github.com/imgyh/tiktok/commit/b3aadf630ad8be9b79fa26a18799336c38569645))
+* **url:** 增加音乐合集URL ([fa635eb](https://github.com/imgyh/tiktok/commit/fa635ebe7f70478e8408b5a8afe30ff0b1ff890f))
+
+
+
 #  (2023-02-23)
 
 
