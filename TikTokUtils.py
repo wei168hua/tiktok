@@ -73,6 +73,15 @@ class Utils(object):
         else:
             return True
 
+    # https://www.52pojie.cn/thread-1589242-1-1.html
+    def getttwid(self):
+        url = 'https://ttwid.bytedance.com/ttwid/union/register/'
+        data = '{"region":"cn","aid":1768,"needFid":false,"service":"www.ixigua.com","migrate_info":{"ticket":"","source":"node"},"cbUrlProtocol":"https","union":true}'
+        res = requests.post(url=url, data=data)
+
+        for i,j in res.cookies.items():
+            return j
+
 
 if __name__ == "__main__":
     pass
