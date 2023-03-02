@@ -281,7 +281,7 @@ class TikTok(object):
             times = times + 1
             print("[  提示  ]:正在对 [合集] 进行第 " + str(times) + " 次请求...\r")
 
-            url = 'https://www.douyin.com/aweme/v1/web/mix/aweme/?' + self.utils.getXbogus(
+            url = self.urls.USER_MIX + self.utils.getXbogus(
                 url=f'device_platform=webapp&aid=6383&os_version=10&version_name=17.4.0&mix_id={mix_id}&cursor={cursor}&count={count}')
 
             while True:
