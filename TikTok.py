@@ -136,10 +136,14 @@ class TikTok(object):
 
     # 传入 url 支持 https://www.iesdouyin.com 与 https://v.douyin.com
     # mode : post | like 模式选择 like为用户点赞 post为用户发布
-    def getUserInfo(self, sec_uid, mode="post", count=35):
+    def getUserInfo(self, sec_uid, mode="post", count=35, number=0):
         print('[  提示  ]:正在请求的用户 id = %s\r\n' % sec_uid)
         if sec_uid is None:
             return None
+        if number <= 0:
+            numflag = False
+        else:
+            numflag = True
 
         max_cursor = 0
         awemeList = []
@@ -178,6 +182,13 @@ class TikTok(object):
                 # 深拷贝 dict 不然list里面全是同样的数据
                 datanew, dataraw = self.getAwemeInfo(aweme_id)
                 awemeList.append(copy.deepcopy(datanew))
+                if numflag:
+                    number-=1
+                    if number==0:
+                        break
+            if numflag and number==0:
+                print("\r\n[  提示  ]: [主页] 下指定数量作品数据获取完成...\r\n")
+                break
 
             # 更新 max_cursor
             max_cursor = datadict["max_cursor"]
@@ -266,10 +277,14 @@ class TikTok(object):
         print('[   📺   ]:复制链接使用下载工具下载')
         return self.result.liveDict
 
-    def getMixInfo(self, mix_id: str, count=35):
+    def getMixInfo(self, mix_id: str, count=35, number=0):
         print('[  提示  ]:正在请求的合集 id = %s\r\n' % mix_id)
         if mix_id is None:
             return None
+        if number <= 0:
+            numflag = False
+        else:
+            numflag = True
 
         cursor = 0
         awemeList = []
@@ -302,6 +317,13 @@ class TikTok(object):
                 # 深拷贝 dict 不然list里面全是同样的数据
                 datanew, dataraw = self.getAwemeInfo(aweme_id)
                 awemeList.append(copy.deepcopy(datanew))
+                if numflag:
+                    number -= 1
+                    if number == 0:
+                        break
+            if numflag and number == 0:
+                print("\r\n[  提示  ]:[合集] 下指定数量作品数据获取完成...\r\n")
+                break
 
             # 更新 max_cursor
             cursor = datadict["cursor"]
@@ -315,10 +337,14 @@ class TikTok(object):
 
         return awemeList
 
-    def getUserAllMixInfo(self, sec_uid, count=35):
+    def getUserAllMixInfo(self, sec_uid, count=35, number=0):
         print('[  提示  ]:正在请求的用户 id = %s\r\n' % sec_uid)
         if sec_uid is None:
             return None
+        if number <= 0:
+            numflag = False
+        else:
+            numflag = True
 
         cursor = 0
         mixIdNameDict = {}
@@ -347,6 +373,13 @@ class TikTok(object):
 
             for mix in datadict["mix_infos"]:
                 mixIdNameDict[mix["mix_id"]] = mix["mix_name"]
+                if numflag:
+                    number -= 1
+                    if number == 0:
+                        break
+            if numflag and number == 0:
+                print("\r\n[  提示  ]:[合集列表] 下指定数量合集数据获取完成...\r\n")
+                break
 
             # 更新 max_cursor
             cursor = datadict["cursor"]
@@ -360,10 +393,14 @@ class TikTok(object):
 
         return mixIdNameDict
 
-    def getMusicInfo(self, music_id: str, count=35):
+    def getMusicInfo(self, music_id: str, count=35, number=0):
         print('[  提示  ]:正在请求的音乐集合 id = %s\r\n' % music_id)
         if music_id is None:
             return None
+        if number <= 0:
+            numflag = False
+        else:
+            numflag = True
 
         cursor = 0
         awemeList = []
@@ -396,6 +433,13 @@ class TikTok(object):
                 # 深拷贝 dict 不然list里面全是同样的数据
                 datanew, dataraw = self.getAwemeInfo(aweme_id)
                 awemeList.append(copy.deepcopy(datanew))
+                if numflag:
+                    number -= 1
+                    if number == 0:
+                        break
+            if numflag and number == 0:
+                print("\r\n[  提示  ]:[音乐集合] 下指定数量作品数据获取完成...\r\n")
+                break
 
             # 更新 cursor
             cursor = datadict["cursor"]

@@ -23,7 +23,7 @@ from TikTokUtils import Utils
 def argument():
     parser = argparse.ArgumentParser(description='抖音批量下载工具 使用帮助')
     parser.add_argument("--link", "-l",
-                        help="1.作品(视频或图集)、合集、个人主页抖音分享链接(删除文案, 保证只有URL, https://v.douyin.com/kcvMpuN/)\r\n"
+                        help="1.作品(视频或图集)、合集、音乐集合、个人主页抖音分享链接(删除文案, 保证只有URL, https://v.douyin.com/kcvMpuN/)\r\n" +
                              "2.解析直播网页版网址(https://live.douyin.com/802939216127)",
                         type=str, required=True)
     parser.add_argument("--path", "-p", help="下载保存位置",
@@ -36,6 +36,10 @@ def argument():
                         type=Utils().str2bool, required=False, default=True)
     parser.add_argument("--mode", "-M", help="link是个人主页时, 设置下载发布的作品(post)或喜欢的作品(like)或者用户所有合集(mix), 默认为post",
                         type=str, required=False, default="post")
+    parser.add_argument("--number", "-n",
+                        help="1.当下载单个合集、音乐集合、主页作品(post模式)和喜欢(like模式)时, 可设置下载前n个作品, 默认为0全部下载\r\n" +
+                             "2.当下载主页下所有合集(mix模式)时, 设置下载前n个合集下所有作品, 默认为0全部下载",
+                        type=int, required=False, default=0)
     args = parser.parse_args()
 
     return args
@@ -50,13 +54,13 @@ def main():
     if key is None or key_type is None:
         return
     elif key_type == "user" and args.mode != 'mix':
-        datalist = tk.getUserInfo(key, args.mode, 35)
+        datalist = tk.getUserInfo(key, args.mode, 35, args.number)
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=args.path)
     elif key_type == "user" and args.mode == 'mix':
         if not os.path.exists(args.path):
             os.mkdir(args.path)
-        mixIdNameDict = tk.getUserAllMixInfo(key, 35)
+        mixIdNameDict = tk.getUserAllMixInfo(key, 35, args.number)
 
         for mix_id in mixIdNameDict:
             print(f'[  提示  ]:正在下载合集 [{mixIdNameDict[mix_id]}] 中的作品\r\n')
@@ -66,11 +70,11 @@ def main():
                         savePath=os.path.join(args.path, mix_file_name))
             print(f'[  提示  ]:合集 [{mixIdNameDict[mix_id]}] 中的作品下载完成\r\n')
     elif key_type == "mix":
-        datalist = tk.getMixInfo(key,35)
+        datalist = tk.getMixInfo(key,35, args.number)
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=args.path)
     elif key_type == "music":
-        datalist = tk.getMusicInfo(key,35)
+        datalist = tk.getMusicInfo(key,35, args.number)
         tk.userDownload(awemeList=datalist, music=args.music, cover=args.cover, avatar=args.avatar,
                         savePath=args.path)
     elif key_type == "aweme":
