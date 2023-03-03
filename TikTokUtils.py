@@ -18,7 +18,10 @@ import re
 import json
 import requests
 from TikTokUrls import Urls
-
+import urllib.parse
+import execjs
+import os
+import sys
 
 class Utils(object):
     def __init__(self):
@@ -50,18 +53,26 @@ class Utils(object):
         # 去除前后空格
         return result
 
-    def getXbogus(self, url, headers=None):
-        urls = Urls()
-        try:
-            response = json.loads(requests.post(
-                url=urls.GET_XB_PATH, data={"param": url}, headers=headers).text)
-            params = response["param"]
-            xb = response["X-Bogus"]
-        except Exception as e:
-            print('[  错误  ]:X-Bogus接口异常, 可能是访问流量高, 接口限流请稍等几分钟再次尝试')
-            return
+    def resource_path(self,relative_path):
+        if getattr(sys, 'frozen', False):  # 是否Bundle Resource
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base_path, relative_path)
 
-        return params  # , xb
+    def getXbogus(self, url, headers=None):
+        # getXbogus算法开源地址https://github.com/B1gM8c/tiktok
+        urls = Urls()
+        query = urllib.parse.urlparse(urls.POST_DETAIL + url).query
+        user_agent = headers.get(
+                'User-Agent') if headers else "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+        try:
+            xbogus = execjs.compile(open(self.resource_path(os.path.join("X-Bogus.js"))).read()).call('sign', query, user_agent)
+            params = url + "&X-Bogus=" + xbogus
+        except Exception as e:
+            print('[  错误  ]:X-Bogus算法异常')
+            return
+        return params
 
     def str2bool(self, v):
         if isinstance(v, bool):
