@@ -15,10 +15,7 @@ Change Log  :
 
 import random
 import re
-import json
 import requests
-from TikTokUrls import Urls
-import urllib.parse
 import execjs
 import os
 import sys
@@ -62,12 +59,10 @@ class Utils(object):
 
     def getXbogus(self, url, headers=None):
         # getXbogus算法开源地址https://github.com/B1gM8c/tiktok
-        urls = Urls()
-        query = urllib.parse.urlparse(urls.POST_DETAIL + url).query
         user_agent = headers.get(
                 'User-Agent') if headers else "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
         try:
-            xbogus = execjs.compile(open(self.resource_path(os.path.join("X-Bogus.js"))).read()).call('sign', query, user_agent)
+            xbogus = execjs.compile(open(self.resource_path(os.path.join("X-Bogus.js"))).read()).call('sign', url, user_agent)
             params = url + "&X-Bogus=" + xbogus
         except Exception as e:
             print('[  错误  ]:X-Bogus算法异常')
